@@ -1,6 +1,6 @@
 # dvbern-lib-doctemplate
 
-Library for generating documents out of templates.
+This library can be used for generating documents out of templates.
 
 ## Getting Started
 
