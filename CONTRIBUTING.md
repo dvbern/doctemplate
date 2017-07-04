@@ -22,7 +22,7 @@ and a **code sample** or an **executable test case** demonstrating the expected 
 At this point, you're ready to make your changes! Feel free to ask for help!
 
 If this is something you think you can fix, then
-[fork <library-name>](https://help.github.com/articles/fork-a-repo)
+[fork lib-doctemplate](https://help.github.com/articles/fork-a-repo)
 and create a branch with a descriptive name.
 
 A good branch name would be (where issue #325 is the ticket you're working on):
