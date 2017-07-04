@@ -4,7 +4,7 @@ This library can be used for generating documents out of templates.
 
 ## Getting Started
 
-These instructions will get you an overview on how to implement and use the dvbern-lib-lib-doctemplate library. See further down for installing or deployment notes.
+These instructions will get you an overview on how to implement and use the dvbern-lib-doctemplate library. See further down for installing or deployment notes.
 
 ### Prerequisites
 
