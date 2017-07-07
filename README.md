@@ -11,7 +11,7 @@ These instructions will get you an overview on how to implement and use the dvbe
 The Lib is integrated according to the desired document format:
 
 ```
-docx (neues microsoft word format):
+docx (new microsoft word format):
 <dependency>
   <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
   <artifactId>docx-engine</artifactId>
@@ -46,7 +46,7 @@ xml:
   <version>2.1.1</version>
 </dependency>
 
-Grundsätzlich besteht dann jeweils auch eine Abhängigkeit zu commons-Module:
+There's also a dependency to the commons-module:
 <dependency>
   <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
   <artifactId>commons</artifactId>
@@ -54,7 +54,7 @@ Grundsätzlich besteht dann jeweils auch eine Abhängigkeit zu commons-Module:
 </dependency>
 ```
 
-Als Howto habe ich internen Entwicklern jeweils den Unit-Test des entsprechenden Submoduls angegeben, der die Handhabung im Prinzip erklärt:
+
 It might help to have a look at the specific Engine Tests. You find them here:
 ```
 •	docx:
