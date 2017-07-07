@@ -6,28 +6,68 @@ This library can be used for generating documents out of templates.
 
 These instructions will get you an overview on how to implement and use the dvbern-lib-doctemplate library. See further down for installing or deployment notes.
 
-### Prerequisites
-
-<What things you need to install the software and how to install them>
-
-```
-<example>
-```
-
 ### Installing
 
-<A step by step series of examples to get a development env running>
-
-<This step does this>
+The Lib is integrated according to the desired document format:
 
 ```
-<example>
+docx (neues microsoft word format):
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>docx-engine</artifactId>
+  <version>2.1.1</version>
+</dependency>
+
+rtf (microsoft rich text format):
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>rtf-engine</artifactId>
+  <version>2.1.1</version>
+</dependency>
+
+odt (open office):
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>odt-engine</artifactId>
+  <version>2.1.1</version>
+</dependency>
+
+pdf:
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>pdf-engine</artifactId>
+  <version>2.1.1</version>
+</dependency>
+
+xml:
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>xml-engine</artifactId>
+  <version>2.1.1</version>
+</dependency>
+
+Grundsätzlich besteht dann jeweils auch eine Abhängigkeit zu commons-Module:
+<dependency>
+  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <artifactId>commons</artifactId>
+  <version>2.1.1</version>
+</dependency>
 ```
 
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Als Howto habe ich internen Entwicklern jeweils den Unit-Test des entsprechenden Submoduls angegeben, der die Handhabung im Prinzip erklärt:
+It might help to have a look at the specific Engine Tests. You find them here:
+```
+•	docx:
+lib-doctemplate/docx-engine/src/test/java/ch/dvbern/lib/doctemplate/docx/DOCXMergeEngineTest.java
+•	rtf:
+lib-doctemplate/rtf-engine/src/test/java/ch/dvbern/lib/doctemplate/rtf/RTFMergeEngineTest.java
+•	odt:
+lib-doctemplate/odt-engine/src/test/java/ch/dvbern/lib/doctemplate/odt/ODTMergeEngineTest.java
+•	pdf:
+lib-doctemplate/pdf-engine/src/test/java/ch/dvbern/lib/doctemplate/pdf/PDFMergeEngineTest.java
+•	xml:
+lib-doctemplate/xml-engine/src/test/java/ch/dvbern/lib/doctemplate/xml/XmlMergeEngineTest.java
+```
 
 ## Built With
 
