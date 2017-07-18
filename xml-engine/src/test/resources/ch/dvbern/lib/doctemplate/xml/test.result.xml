@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2017 DV Bern AG
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ limitations under the License.
+  -->
+
+<ns3:LstRechnung xmlns:ns3="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenLstRechnung" xmlns="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenTypen" xmlns:ldt="http://www.dvbern.ch/lib/doctemplate/XmlMergeSchema" xmlns:ns2="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenBriefKopf" xmlns:ns4="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenEsr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ns3:BriefKopf>
+        <ns2:Absender>
+            <ns2:AbsenderAdresse>
+        <AdressZeile>Steuerbüro</AdressZeile>
+        <AdressZeile>Adelboden</AdressZeile>
+        <AdressZeile>Zelgstrasse 3</AdressZeile>
+        <AdressZeile>3715 Adelboden</AdressZeile>
+      </ns2:AbsenderAdresse>
+            <ns2:AbsenderTelefon>033 673 82 23</ns2:AbsenderTelefon>
+            <ns2:AbsenderTelefax>033 673 82 23</ns2:AbsenderTelefax>
+            <ns2:AbsenderEmail>info@3715.ch</ns2:AbsenderEmail>
+        </ns2:Absender>
+        <ns2:Refernz>
+            <ns2:GemeindeNummer>1101/0</ns2:GemeindeNummer>
+            <ns2:ZpvNummer>10000255</ns2:ZpvNummer>
+            <ns2:SteuerJahr>2009</ns2:SteuerJahr>
+            <ns2:Register>060</ns2:Register>
+            <ns2:FallLaufnummer>0002</ns2:FallLaufnummer>
+        </ns2:Refernz>
+        <ns2:Adressat>
+      <AdressZeile>Pieren &amp;amp; Co AG</AdressZeile>
+      <AdressZeile>Alte Strasse 2</AdressZeile>
+      <AdressZeile>3715 Adelboden</AdressZeile>
+    </ns2:Adressat>
+        <ns2:BriefDatum>
+            <ns2:Ort>Adelboden</ns2:Ort>
+            <ns2:Datum>09.02.2012</ns2:Datum>
+        </ns2:BriefDatum>
+        <ns3:VerfuegendeGemeidne>Adelboden</ns3:VerfuegendeGemeidne>
+        <ns3:Inkassostelle>
+            <ns3:InkassostelleAdresse>
+        <AdressZeile>Inkassostelle Region Oberland</AdressZeile>
+        <AdressZeile>Allmendstrasse 18</AdressZeile>
+        <AdressZeile>3602 Thun</AdressZeile>
+      </ns3:InkassostelleAdresse>
+            <ns3:InkassostelleTelefon>031 633 94 02</ns3:InkassostelleTelefon>
+            <ns3:InkassostelleTelefax>031 633 60 01</ns3:InkassostelleTelefax>
+            <ns3:InkassostelleEmail>inkassotes1@fin.be.ch</ns3:InkassostelleEmail>
+        </ns3:Inkassostelle>
+    </ns3:BriefKopf>
+    <ns3:Daten>
+        <ns3:DatenEntscheid>
+            <ns3:BetragLst>1478.05</ns3:BetragLst>
+            <ns3:Faelligkeit>2012-02-09T00:00:00</ns3:Faelligkeit>
+            <ns3:ZahlungRueckzahlungFrist>30</ns3:ZahlungRueckzahlungFrist>
+            <ns3:Saldo>-2054.70</ns3:Saldo>
+            <ns3:Buchungen>
+        <ns3:Buchung>
+	                    <ns3:TextBuchung>Ihre Zahlung vom 31.12.2009</ns3:TextBuchung>
+	                    <ns3:BetragBuchung>-3185.25</ns3:BetragBuchung>
+	                </ns3:Buchung>
+        <ns3:Buchung>
+	                    <ns3:TextBuchung>Unsere Rückzahlung vom 14.04.2010</ns3:TextBuchung>
+	                    <ns3:BetragBuchung>17.05</ns3:BetragBuchung>
+	                </ns3:Buchung>
+        <ns3:Buchung>
+	                    <ns3:TextBuchung>Ihre Zahlung vom 07.12.2010</ns3:TextBuchung>
+	                    <ns3:BetragBuchung>-59.30</ns3:BetragBuchung>
+	                </ns3:Buchung>
+        <ns3:Buchung>
+	                    <ns3:TextBuchung>Ihre Zahlung vom 11.10.2011</ns3:TextBuchung>
+	                    <ns3:BetragBuchung>-175.90</ns3:BetragBuchung>
+	                </ns3:Buchung>
+        <ns3:Buchung>
+	                    <ns3:TextBuchung>Vergütungszins</ns3:TextBuchung>
+	                    <ns3:BetragBuchung>-129.35</ns3:BetragBuchung>
+	                </ns3:Buchung>
+        <ns3:SaldoInkasso>2054.70</ns3:SaldoInkasso>
+            </ns3:Buchungen>
+      <ns3:Konto>
+	                <BankKonto>
+	                    <KontoNummer>CH67 8082 0000 0035 7750 1, Raiffeisen, 3714, Frutigen</KontoNummer>
+	                </BankKonto>
+	            </ns3:Konto>
+    </ns3:DatenEntscheid>
+    </ns3:Daten>
+    <ns3:Einzahlungsschein>
+        <ns3:EsrOhneForderung>
+            <ns4:Adressat>
+        <AdressZeile>Pieren &amp;amp; Co AG</AdressZeile>
+        <AdressZeile>Alte Strasse 2</AdressZeile>
+        <AdressZeile>3715 Adelboden</AdressZeile>
+            </ns4:Adressat>
+        </ns3:EsrOhneForderung>
+    </ns3:Einzahlungsschein>
+</ns3:LstRechnung>

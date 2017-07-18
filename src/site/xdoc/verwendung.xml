@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ Copyright 2017 DV Bern AG
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ limitations under the License.
+  -->
+
+<document>
+	<properties>
+		<title>HTTP-URL Component</title>
+	</properties>
+	<body>
+		<section name="Dokument-Generierung">
+			<p>
+				<b>dvbern-lib-doctemplate</b> ermöglicht die Generierung von formatierten Dokumenten aus Vorlagen
+				(Templates), vermischt mit Applikationsdaten. Basis für die Realisierung dieser Komponente sind: 
+				<ul>
+					<li>rtf-Format: das OpenSource Projekt <a href="http://rtftemplate.sourceforge.net">RTFTemplate</a></li>
+				</ul>
+			</p>
+		</section>
+
+		<section name="Features">
+			<ul>
+				<li>
+					<b>ersetzen von Variablen mit Applikationsdaten</b><br/>
+					- inkl. Basisformatierung von Datumswerten und Zahlen
+				</li>
+				<li>
+					<b>bedingte Ausgabe</b> von Textabschnitten
+				</li>
+				<li>
+					<b>iterative Ausgabe</b> von Textabschnitten<br/>
+					- inkl. Sortierung (aufsteigend oder absteigend)<br/>
+					- inkl. selektive Iterations-Ausschnitte (Beispiele: Datensätze 0 bis 1, ab Datensatz 2)<br/>
+					- inkl. mehrere Datensätze pro Iteration (Collapsed Iteration)					
+				</li>
+			</ul>	
+		</section>
+		
+		<section name="Datenquelle">
+			<p>
+				Unabhängig vom Zielformat können mit der Implementierung des Interfaces MergeSource 
+				<ul>
+					<li><b>Applikationsdaten</b> und</li>
+					<li>Informationen über <b>bedingte Ausgaben</b> bzw.</li>
+					<li>Informatioen über <b>iterative Ausgaben</b></li>
+				</ul>
+				für die Dokumentgenerierung zur Verfügung gestellt werden. 
+			</p>
+			<p>
+				<b>BeanMergeSource</b><br/>
+				Mit Hilfe dieser MergeSource Implementierung können Informationen aus einem
+				einfachen Java Bean (POJO) mittels Java Reflection in ein Dokument eingefügt
+				werden (siehe RTFMergeEngineAdditionalTest). Die Implementierung wird mit dem
+				key-Präfix BRX_ angesprochen (Bean Reflection). Im Konstruktor ist zudem
+				optional die Angabe eines alternativen Key-Präfixes möglich. 
+			</p>
+		</section>
+		
+		<section name="Anwendungshinweise in odt-Templates">
+			<table>
+				<tr><th>Feature</th><th>Dokumentation</th></tr>
+				<tr><td>Applikationsdaten einfügen</td><td>Definition eines <b>Bookmarks</b> mit Präfix FIELD_
+					innerhalb der Template-Datei. Der Name des MergeFields wird beim Aufruf von
+					<i>getData(...)</i> als key-Argument der verwendeten <i>MergeSource</i>
+					mitgegeben und bestimmt dabei, welche Daten ausgegeben werden sollen.</td></tr>
+				<tr><td>Formatierung von Applikationsdaten</td><td>Mit dem Key-Suffix <b>_FMTxxx</b>
+					kann die Ausgabe eines Objektes formatiert werden, wobei für xxx folgendes gilt:<br/>
+					<li>bei einem <i>java.util.Date</i>-Objekt ist xxx ein <i>SimpleDateFormat</i>-Pattern.
+					Fakultativ kann die Formatierung auf eine Sprache und Land erweiterter werden (Format: "_de_CH")
+					z.B wird das Datum "01.01.2009" mit "dd. MMMMMM yyyy_de" zu "01. Januar 2009" konvertiert.
+					Wird keine Sprache oder Land angegeben so wird der Default verwendet.</li>
+					<li>bei einem <i>java.lang.Number</i>-Objekt ein <i>DecimalFormat</i>-Pattern.  Aufgrund von Restriktionen
+					für OpenOffice Bookmarks gibt es vordefinierte Patterns: <i>_FMT0DP</i> für <i>_FMT#,##0</i>,
+					<i>_FMT1DP</i> für <i>_FMT#,##0.0</i> und <i>_FMT2DP</i> für <i>_FMT#,##0.00</i></li>
+					<li>bei einem <i>java.lang.Boolean</i>-Objekt ein Text für True und False (Format: "TrueText_FalseText")
+					z.B. "Ja_Nein" ergibt True = "Ja", False = "Nein"; "Ja" ergibt True = "Ja", False = ""; "_Nein" ergibt
+					True = "", False = "Nein"</li>
+					<li>bei einer Grafik die Höhe und Breite in Pixel mit einem Underscore getrennt
+					angegeben wird.</li> </td></tr>
+				<tr><td>bedingte Ausgabe</td><td>Mit der Definition von zwei <b>Textmarken</b> kann
+					ein Dokumentbereich definiert werden, der abhängig von der programmierten
+					Applikationslogik in der verwendeten MergeSource ausgegeben werden soll oder nicht.
+					Die Beginn-Marke muss dabei einen Namen mit dem Präfix <b>IF_</b> aufweisen. Der
+					Präfix <b>ENDIF_</b> wird für den Namen der Ende-Marke verwendet. Der Rest der
+					Textmarken-Bezeichnung wird beim Aufruf von <i>ifStatement(...)</i> als key-Argument
+					der verwendeten <i>MergeSource</i> mitgegeben und bestimmt damit, ob der betreffende
+					Abschnitt zwischen Beginn- und Ende-Marke ausgegeben werden soll.</td></tr>
+				<tr><td>iterative Ausgabe</td><td>Mit der Definition von zwei <b>Textmarken</b> kann ein
+					Dokumentbereich definiert werden, der abhängig von der programmierten Applikationslogik
+					in der verwendeten <i>MergeSource</i> wiederholt ausgegeben werden soll. Die Beginn-Marke
+					muss dabei einen Namen mit dem Präfix <b>WHILE_</b> aufweisen. Der Präfix <b>ENDWHILE_</b>
+					wird für den Namen der Ende-Marke verwendet. Der Rest der Textmarken-Bezeichnung wird beim
+					Aufruf von <i>whileStatement(...)</i> als key-Argument der verwendeten <i>MergeSource</i>
+					mitgegeben und bestimmt damit, wie oft der betreffende Abschnitt zwischen Beginn- und
+					Ende-Marke ausgegeben werden soll.<br/>
+					Bezüglich Sortierung, selektiven Iterations-Ausschnitten und Collapsed-Iterations
+					sind die UnitTests in <i>ODTMergeEngineTest</i> als Verwendungsbeispiele verfügbar.
+					(Beispiel Input: <a href="./test1.odt">test1.odt</a> Output:
+					<a href="./result1.odt">result1.odt</a>)</td></tr>
+				<tr><td>mehrere gleiche Textmarken</td><td>Im odt-Format muss ein Bookmark eine eindeutige
+				Bezeichnung haben. Damit die gleiche Textmarke mehrfach verwendet werden kann, kann deren
+				Bezeichnung mit einem Suffix <b>_ALTxxx</b> erweitert werden, wobei <i>xxx</i> für eine
+				beliebige Zeichenfolge steht.</td></tr>
+			</table>
+		</section>
+		
+		<section name="Anwendungshinweise in rtf-Templates">
+			<table>
+				<tr><th>Feature</th><th>Dokumentation</th></tr>
+				<tr><td>Applikationsdaten einfügen</td><td>Definition eines <b>MergeFields</b>
+					innerhalb der Template-Datei. Der Name des MergeFields wird beim Aufruf von
+					<i>getData(...)</i> als key-Argument der verwendeten <i>MergeSource</i>
+					mitgegeben und bestimmt dabei, welche Daten ausgegeben werden sollen.</td></tr>
+				<tr><td>Formatierung von Applikationsdaten</td><td>Mit dem Key-Suffix <b>_FMTxxx</b>
+					kann die Ausgabe eines Objektes formatiert werden, wobei für xxx folgendes gilt:<br/>
+					<li>bei einem <i>java.util.Date</i>-Objekt ein <i>SimpleDateFormat</i>-Pattern angegeben werden muss. Fakultativ kann die Formatierung auf eine Sprache und Land erweiterter werden (Format: "_de_CH") z.B wird das Datum "01.01.2009" mit "dd. MMMMMM yyyy_de" zu "01. Januar 2009" konvertiert. Wird keine Sprache oder Land angegeben so wird der Default verwendet.</li>
+					<li>bei einem <i>java.lang.Number</i>-Objekt ein <i>DecimalFormat</i>-Pattern</li>
+					<li>bei einem <i>java.lang.Boolean</i>-Objekt ein Text für True und False (Format: "TrueText_FalseText") z.B. "Ja_Nein" ergibt True = "Ja", False = "Nein"; "Ja" ergibt True = "Ja", False = ""; "_Nein" ergibt True = "", False = "Nein"</li>
+					<li>bei einer Grafik die Höhe und Breite in Pixel mit einem Underscore getrennt
+					angegeben wird.</li> </td></tr>
+				<tr><td>bedingte Ausgabe</td><td>Mit der Definition von zwei <b>Textmarken</b> kann
+					ein Dokumentbereich definiert werden, der abhängig von der programmierten
+					Applikationslogik in der verwendeten MergeSource ausgegeben werden soll oder nicht.
+					Die Beginn-Marke muss dabei einen Namen mit dem Präfix <b>IF_</b> aufweisen. Der
+					Präfix <b>ENDIF_</b> wird für den Namen der Ende-Marke verwendet. Der Rest der
+					Textmarken-Bezeichnung wird beim Aufruf von <i>ifStatement(...)</i> als key-Argument
+					der verwendeten <i>MergeSource</i> mitgegeben und bestimmt damit, ob der betreffende
+					Abschnitt zwischen Beginn- und Ende-Marke ausgegeben werden soll.</td></tr>
+				<tr><td>iterative Ausgabe</td><td>Mit der Definition von zwei <b>Textmarken</b> kann ein
+					Dokumentbereich definiert werden, der abhängig von der programmierten Applikationslogik
+					in der verwendeten <i>MergeSource</i> wiederholt ausgegeben werden soll. Die Beginn-Marke
+					muss dabei einen Namen mit dem Präfix <b>WHILE_</b> aufweisen. Der Präfix <b>ENDWHILE_</b>
+					wird für den Namen der Ende-Marke verwendet. Der Rest der Textmarken-Bezeichnung wird beim
+					Aufruf von <i>whileStatement(...)</i> als key-Argument der verwendeten <i>MergeSource</i>
+					mitgegeben und bestimmt damit, wie oft der betreffende Abschnitt zwischen Beginn- und
+					Ende-Marke ausgegeben werden soll.<br/>
+					Bezüglich Sortierung, selektiven Iterations-Ausschnitten und Collapsed-Iterations
+					sind die UnitTests in <i>RTFMergeEngineTest</i> als Verwendungsbeispiele verfügbar.
+					(Beispiel Test 8: Input: <a href="./test8.rtf">test8.rtf</a> Output:
+					<a href="./test.result.8.rtf">test.result.8.rtf</a>)</td></tr>
+				<tr><td>mehrere gleiche Textmarken</td><td>Im rtf-Format muss eine Textmarke eine eindeutige
+				Bezeichnung haben. Damit die gleiche Textmarke mehrfach verwendet werden kann, kann deren
+				Bezeichnung mit einem Suffix <b>_ALTxxx</b> erweitert werden, wobei <i>xxx</i> für eine
+				beliebige Zeichenfolge steht.</td></tr>
+			</table>
+		</section>
+
+		<section name="Anwendungshinweise in PDF-generierung">
+			<p>
+				Mit dem document-converter Modul können aus ODT file ein PDF generiert werden. 
+				Es wird mit dem Hilfe des OpenOffices oder LibreOffices headless mode generieren. 
+				<b>OpenOffice</b> headless mode: 
+				<ul>
+					<li>soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard</li>
+				</ul>
+				<b>LibreOffice</b> headless mode: 
+				<ul>
+					<li>libreoffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard</li>
+				</ul>
+			</p>
+		</section>
+
+	</body>
+</document>
