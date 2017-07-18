@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright 2017 DV Bern AG
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ limitations under the License.
+  -->
+
+<ns3:LstRechnung
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ns2="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenBriefKopf"
+        xmlns="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenTypen"
+        xmlns:ns4="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenEsr"
+        xmlns:ns3="http://sv.fin.be.ch/schemas/A7I/20110329/DruckdatenLstRechnung"
+        xmlns:ldt="http://www.dvbern.ch/lib/doctemplate/XmlMergeSchema">
+    <ns3:BriefKopf>
+        <ns2:Absender>
+            <ns2:AbsenderAdresse>
+            	<ldt:while path="absender.adressen">
+                	<AdressZeile><ldt:field path="absender.adressen.adress"/></AdressZeile>
+                </ldt:while>
+            </ns2:AbsenderAdresse>
+            <ns2:AbsenderTelefon><ldt:field path="absender.telefon"/></ns2:AbsenderTelefon>
+            <ns2:AbsenderTelefax><ldt:field path="absender.telefax"/></ns2:AbsenderTelefax>
+            <ns2:AbsenderEmail><ldt:field path="absender.email"/></ns2:AbsenderEmail>
+        </ns2:Absender>
+        <ns2:Refernz>
+            <ns2:GemeindeNummer><ldt:field path="refernz.gemeindeNummer"/></ns2:GemeindeNummer>
+            <ns2:ZpvNummer><ldt:field path="refernz.zpvNummer"/></ns2:ZpvNummer>
+            <ns2:SteuerJahr><ldt:field path="refernz.steuerJahr"/></ns2:SteuerJahr>
+            <ns2:Register><ldt:field path="refernz.register"/></ns2:Register>
+            <ns2:FallLaufnummer><ldt:field path="refernz.fallLaufnummer"/></ns2:FallLaufnummer>
+        </ns2:Refernz>
+        <ns2:Adressat>
+            	<ldt:while path="adressaten">
+                	<AdressZeile><ldt:field path="adressaten.adress"/></AdressZeile>
+                </ldt:while>
+        </ns2:Adressat>
+        <ns2:BriefDatum>
+            <ns2:Ort><ldt:field path="briefDatum.ort"/></ns2:Ort>
+            <ns2:Datum><ldt:field path="briefDatum.datum" formatter="dd.MM.yyyy"/></ns2:Datum>
+        </ns2:BriefDatum>
+        <ns3:VerfuegendeGemeidne><ldt:field path="verfuegendeGemeinde"/></ns3:VerfuegendeGemeidne>
+        <ns3:Inkassostelle>
+            <ns3:InkassostelleAdresse>
+            	<ldt:while path="inkassostelle.adressen">
+                	<AdressZeile><ldt:field path="inkassostelle.adressen.adress"/></AdressZeile>
+                </ldt:while>
+            </ns3:InkassostelleAdresse>
+            <ns3:InkassostelleTelefon><ldt:field path="inkassostelle.telefon"/></ns3:InkassostelleTelefon>
+            <ns3:InkassostelleTelefax><ldt:field path="inkassostelle.telefax"/></ns3:InkassostelleTelefax>
+            <ns3:InkassostelleEmail><ldt:field path="inkassostelle.email"/>
+            </ns3:InkassostelleEmail>
+        </ns3:Inkassostelle>
+    </ns3:BriefKopf>
+    <ns3:Daten>
+        <ns3:DatenEntscheid>
+            <ns3:BetragLst><ldt:field path="datenEntscheid.betragLst_FMTSEP2DP"/></ns3:BetragLst>
+            <ns3:Faelligkeit><ldt:field path="datenEntscheid.faelligkeit"/></ns3:Faelligkeit>
+            <ns3:ZahlungRueckzahlungFrist><ldt:field path="datenEntscheid.zahlungRueckzahlungFrist"/></ns3:ZahlungRueckzahlungFrist>
+            <ns3:Saldo><ldt:field path="datenEntscheid.saldo_FMTSEP2DP"/></ns3:Saldo>
+            <ns3:Buchungen>
+            	<ldt:while path="datenEntscheid.buchungen">
+	                <ns3:Buchung>
+	                    <ns3:TextBuchung><ldt:field path="datenEntscheid.buchungen.textBuchung"/>
+	                    </ns3:TextBuchung>
+	                    <ns3:BetragBuchung><ldt:field path="datenEntscheid.buchungen.betragBuchung" formatter="####.00" SORT="ASC"/></ns3:BetragBuchung>
+	                    <ns3:BetragBuchung2><ldt:field path="datenEntscheid.buchungen.betragBuchungTest_FMT####.00" sOrt="dEsC"/></ns3:BetragBuchung2>
+	                </ns3:Buchung>
+                </ldt:while>
+                <ns3:SaldoInkasso><ldt:field path="datenEntscheid.saldoInkasso"/></ns3:SaldoInkasso>
+            </ns3:Buchungen>
+  			<ldt:if field="datenEntscheid.konto.showBankKonto">
+	            <ns3:Konto>
+	                <BankKonto>
+	                    <KontoNummer><ldt:field path="datenEntscheid.konto.bankKonto"/>
+	                    </KontoNummer>
+	                </BankKonto>
+	            </ns3:Konto>
+	        </ldt:if>
+        </ns3:DatenEntscheid>
+    </ns3:Daten>
+    <ns3:Einzahlungsschein>
+        <ns3:EsrOhneForderung>
+            <ns4:Adressat>
+            	<ldt:while path="esrOhneForderungAdressaten">
+	                <AdressZeile><ldt:field path="esrOhneForderungAdressaten.adress"/></AdressZeile>
+	            </ldt:while>
+            </ns4:Adressat>
+        </ns3:EsrOhneForderung>
+    </ns3:Einzahlungsschein>
+</ns3:LstRechnung>
