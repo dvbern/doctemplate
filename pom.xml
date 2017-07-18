@@ -14,14 +14,13 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ch.dvbern.lib</groupId>
     <artifactId>dvbern-lib-doctemplate</artifactId>
     <packaging>pom</packaging>
     <name>dvbern-lib-doctemplate</name>
-    <version>2.2.0-SNAPSHOT</version> <!-- app-release -->
+    <version>2.3.0-SNAPSHOT</version> <!-- app-release -->
     <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
         Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
     </description>
