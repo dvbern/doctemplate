@@ -4,7 +4,8 @@ This library can be used for generating documents out of templates.
 
 ## Getting Started
 
-These instructions will get you an overview on how to implement and use the dvbern-lib-doctemplate library. See further down for installing or deployment notes.
+These instructions will get you an overview on how to implement and use the doctemplate library. See further down for
+ installing or deployment notes.
 
 ### Installing
 
@@ -13,44 +14,44 @@ The Lib is integrated according to the desired document format:
 ```
 docx (new microsoft word format):
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>docx-engine</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 
 rtf (microsoft rich text format):
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>rtf-engine</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 
 odt (open office):
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>odt-engine</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 
 pdf:
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>pdf-engine</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 
 xml:
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>xml-engine</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 
 There's also a dependency to the commons-module:
 <dependency>
-  <groupId>ch.dvbern.lib.dvbern-lib-doctemplate</groupId>
+  <groupId>ch.dvbern.oss.doctemplate</groupId>
   <artifactId>commons</artifactId>
-  <version>2.1.1</version>
+  <version>(Newest Version)</version>
 </dependency>
 ```
 
@@ -86,7 +87,7 @@ One healthy social atmospehere is very important to us, wherefore we rate our Co
 
 * **DV Bern AG** - *Initial work* - [dvbern](https://github.com/dvbern)
 
-See also the list of [contributors](https://github.com/dvbern/lib-doctemplate/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dvbern/doctemplate/contributors) who participated in this project.
 
 ## License
 

@@ -16,18 +16,18 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.dvbern.lib</groupId>
-    <artifactId>dvbern-lib-doctemplate</artifactId>
+    <groupId>ch.dvbern.oss.doctemplate</groupId>
+    <artifactId>doctemplate</artifactId>
     <packaging>pom</packaging>
-    <name>dvbern-lib-doctemplate</name>
-    <version>2.3.0</version> <!-- app-release -->
+    <name>DVBern DocTemplate</name>
+    <version>2.4.0</version> <!-- app-release -->
     <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
         Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
     </description>
     <parent>
         <groupId>ch.dvbern.oss.maven</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.0-rc1</version>
+        <version>1.0.3</version>
     </parent>
 
     <properties>
@@ -63,9 +63,6 @@
             <organization>DV Bern AG</organization>
         </developer>
     </developers>
-    <scm>
-        <connection>scm:svn:http://svn/repos/dvbern/lib/doctemplate/trunk</connection>
-    </scm>
     <modules>
         <module>common</module>
         <module>odt-engine</module>
