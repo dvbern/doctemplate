@@ -28,7 +28,12 @@ import java.util.concurrent.Semaphore;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import ch.dvbern.lib.doctemplate.common.*;
+import ch.dvbern.lib.doctemplate.common.BeanMergeSource;
+import ch.dvbern.lib.doctemplate.common.DocTemplateException;
+import ch.dvbern.lib.doctemplate.common.ExtendedBeanMergeSource;
+import ch.dvbern.lib.doctemplate.common.Image;
+import ch.dvbern.lib.doctemplate.common.MergeContext;
+import ch.dvbern.lib.doctemplate.common.MergeSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,8 +56,6 @@ public class DOCXMergeEngineTest {
 
 	/**
 	 * Test 1: Textbaustein wird nicht ausgeblendet, Liste leer.
-	 *
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@Test
@@ -65,7 +68,7 @@ public class DOCXMergeEngineTest {
 		}
 
 		if (false) { // switch to true to write the file
-			try (FileOutputStream fos = new FileOutputStream("/mnt/dv/transfer/meth/result1.docx")) {
+			try (FileOutputStream fos = new FileOutputStream("/tmp/result1.docx")) {
 				fos.write(s.getBytes(CHARSET));
 			}
 		}
@@ -77,8 +80,6 @@ public class DOCXMergeEngineTest {
 
 	/**
 	 * Test 2: Multithreading-Test.
-	 *
-	 * @throws Exception
 	 */
 	public void test2() throws Exception {
 
@@ -94,8 +95,6 @@ public class DOCXMergeEngineTest {
 
 	/**
 	 * Test 3: Kopf- und Fusszeile
-	 *
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@Test
@@ -122,6 +121,31 @@ public class DOCXMergeEngineTest {
 		xml = getContent(new ByteArrayInputStream(s.getBytes(CHARSET)), "word/footer1.xml");
 		expected = getContent(new ByteArrayInputStream(getBytes("result3.docx")), "word/footer1.xml");
 		Assert.assertEquals("merged docx of footer1 does not match the expected result", xml, expected);
+	}
+
+	/**
+	 * Test 3: Kopf- und Fusszeile
+	 */
+	@SuppressWarnings("unused")
+	@Test
+	public void testCellLineBreakProducesNoError() throws Exception {
+
+		DOCXMergeEngine docxME = new DOCXMergeEngine("Test4");
+		String s;
+		try (InputStream is = this.getClass().getResourceAsStream("pagebreakDocvariable.docx")) {
+			s = new String(docxME.getDocument(is, new RootMergeSource(true, true)), CHARSET);
+		}
+
+		if (false) { // switch to true to write the file
+			try (FileOutputStream fos = new FileOutputStream("/tmp/resultPagebreakDocvariable.docx")) {
+				fos.write(s.getBytes(CHARSET));
+			}
+		}
+
+		String xml = getContent(new ByteArrayInputStream(s.getBytes(CHARSET)), "word/document.xml");
+		String expected = getContent(new ByteArrayInputStream(getBytes("resultPagebreakDocvariable.docx")), "word/document.xml");
+		Assert.assertEquals("merged docx does not match the expected result", xml, expected);
+
 	}
 
 	private static String getContent(InputStream input, final String zipEntryName) {
