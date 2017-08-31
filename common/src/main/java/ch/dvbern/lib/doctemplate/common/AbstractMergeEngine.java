@@ -115,7 +115,10 @@ public abstract class AbstractMergeEngine<T extends Image> {
 
 			parseTemplate(new StringBuffer(writer.toString()));
 			if (this.parseStack.size() > 1) {
-				throw new DocTemplateException("error.template.invalid.structure");
+				// Debug-Info about the failing element
+				BasicMergeElement lastFailing = this.parseStack.peek();
+				String errorMessage = "last failing tag is " + lastFailing.toString();
+				throw new DocTemplateException("error.template.invalid.structure", errorMessage);
 			}
 			// Ergebnis erstellen
 			bme.getContent(new MergeContext(mergeSource), mergeSource, output);

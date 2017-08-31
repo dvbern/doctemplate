@@ -90,4 +90,11 @@ public class IterationMergeElement extends AbstractMergeElement {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return new org.apache.commons.lang.builder.ToStringBuilder(this)
+				.append("key", key)
+				.append("name", name)
+				.toString();
+	}
 }
