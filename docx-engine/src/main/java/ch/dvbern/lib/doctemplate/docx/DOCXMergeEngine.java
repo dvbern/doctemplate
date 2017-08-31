@@ -72,6 +72,7 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 	private static final String CONDITION_BEGIN = "IF_";
 	private static final String ITERATION_BEGIN = "WHILE_";
 	private static final String DOCX_DOCVARIABLE_TAG = "w:instrText";
+	// Spaces are important! DVLIB-136
 	private String docxDocVariableStart = " DOCVARIABLE  ";
 	private String docxDocVariableEnd ="  \\* MERGEFORMAT ";
 	private static final String DOCX_FLDCHAR_TAG = "w:fldChar";
@@ -283,9 +284,6 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 			Node childElement = childElements.item(i);
 			if (childElement.getNodeName().equals(DOCX_DOCVARIABLE_TAG)) {
 				String s = childElement.getTextContent();
-//				if (s != null) {
-//					s = s.trim();
-//				}
 				if (this.docVariable != null || s != null && s.startsWith(this.docxDocVariableStart)) {
 					if (this.fldcharBeginNode != null && this.fldcharBeginParentNode != null) {
 						// vorherigen DocVariable-Begin-Tag entfernen
@@ -302,8 +300,8 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 					this.docVariable.append(s);
 					int endMarker = this.docVariable.indexOf(this.docxDocVariableEnd);
 					if (endMarker < 0) {
-						LOG.debug("\\* was not immediatly found in tag, this can happen if the Docvariable"
-								+ "is broken up over multiple instr tags. Keep searching");
+						LOG.debug("'" + this.docxDocVariableEnd +"' was not immediatly found in tag, this can happen if the Docvariable"
+								+ "is broken up over multiple instr tags. Continuing search...");
 						continue; // DocVariable noch unvollstaendig
 					}
 					this.docVariable.delete(endMarker, this.docVariable.length());
@@ -314,7 +312,6 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 						// ALT-Suffix
 						dv = dv.substring(0, altPos);
 					}
-//					dv = dv.trim();
 					if (dv.startsWith(getFieldPrefix()) || dv.startsWith(SORTFIELD_PREFIX) || dv.startsWith(CONDITION_BEGIN) || dv.startsWith(CONDITION_END)
 							|| dv.startsWith(ITERATION_BEGIN) || dv.startsWith(ITERATION_END)) {
 						Node n = doc.createElement(INTERNAL_BOOKMARK_TAG);

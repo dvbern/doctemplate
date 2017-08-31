@@ -18,6 +18,7 @@ import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -92,7 +93,7 @@ public class IterationMergeElement extends AbstractMergeElement {
 
 	@Override
 	public String toString() {
-		return new org.apache.commons.lang.builder.ToStringBuilder(this)
+		return new ToStringBuilder(this)
 				.append("key", key)
 				.append("name", name)
 				.toString();
