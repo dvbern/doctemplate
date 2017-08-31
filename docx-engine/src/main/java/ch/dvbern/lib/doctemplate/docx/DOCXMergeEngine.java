@@ -35,11 +35,6 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import ch.dvbern.lib.doctemplate.common.AbstractMergeEngine;
 import ch.dvbern.lib.doctemplate.common.DocTemplateException;
 import ch.dvbern.lib.doctemplate.common.Image;
@@ -47,6 +42,12 @@ import ch.dvbern.lib.doctemplate.common.Image.Format;
 import ch.dvbern.lib.doctemplate.common.MergeSource;
 import ch.dvbern.lib.doctemplate.common.XmlBasedFieldMergeElement;
 import ch.dvbern.lib.doctemplate.util.ImageHandler;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Merged eine DOCX-Vorlage mit Informationen, die Aufgrund der Bezeichnungen, die innerhalb der Vorlage als
@@ -71,8 +72,9 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 	private static final String CONDITION_BEGIN = "IF_";
 	private static final String ITERATION_BEGIN = "WHILE_";
 	private static final String DOCX_DOCVARIABLE_TAG = "w:instrText";
-	private String docxDocVariableStart = "DOCVARIABLE";
-	private String docxDocVariableEnd = "\\* MERGEFORMAT";
+	// Spaces are important! DVLIB-136
+	private String docxDocVariableStart = " DOCVARIABLE  ";
+	private String docxDocVariableEnd ="  \\* MERGEFORMAT ";
 	private static final String DOCX_FLDCHAR_TAG = "w:fldChar";
 	private static final String DOCX_FLDCHARTYPE_ATTR = "w:fldCharType";
 	private static final String DOCX_FLDCHARTYPE_BEGIN = "begin";
@@ -86,6 +88,7 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 	private StringBuilder docVariable = null;
 	private Node fldcharBeginParentNode = null, fldcharBeginNode = null;
 
+	private static final Log LOG = LogFactory.getLog(DOCXMergeEngine.class);
 	/**
 	 * Initialisierung der Engine mit einem kennzeichnenden Namen.
 	 *
@@ -281,9 +284,6 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 			Node childElement = childElements.item(i);
 			if (childElement.getNodeName().equals(DOCX_DOCVARIABLE_TAG)) {
 				String s = childElement.getTextContent();
-				if (s != null) {
-					s = s.trim();
-				}
 				if (this.docVariable != null || s != null && s.startsWith(this.docxDocVariableStart)) {
 					if (this.fldcharBeginNode != null && this.fldcharBeginParentNode != null) {
 						// vorherigen DocVariable-Begin-Tag entfernen
@@ -300,6 +300,8 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 					this.docVariable.append(s);
 					int endMarker = this.docVariable.indexOf(this.docxDocVariableEnd);
 					if (endMarker < 0) {
+						LOG.debug("'" + this.docxDocVariableEnd +"' was not immediatly found in tag, this can happen if the Docvariable"
+								+ "is broken up over multiple instr tags. Continuing search...");
 						continue; // DocVariable noch unvollstaendig
 					}
 					this.docVariable.delete(endMarker, this.docVariable.length());
@@ -310,7 +312,6 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 						// ALT-Suffix
 						dv = dv.substring(0, altPos);
 					}
-					dv = dv.trim();
 					if (dv.startsWith(getFieldPrefix()) || dv.startsWith(SORTFIELD_PREFIX) || dv.startsWith(CONDITION_BEGIN) || dv.startsWith(CONDITION_END)
 							|| dv.startsWith(ITERATION_BEGIN) || dv.startsWith(ITERATION_END)) {
 						Node n = doc.createElement(INTERNAL_BOOKMARK_TAG);
@@ -374,35 +375,9 @@ public class DOCXMergeEngine extends AbstractMergeEngine<DocxImage> {
 
 		String stringWithTags = "<w:t>" + dataAsString + "</w:t>"; // wrap in text tags
 		String stringWithLinebreaks = stringWithTags.replace("\n", "</w:t><w:br/><w:t>");// the
-		// Linebreaks
-		// could
-		// also
-		// be
-		// entered
-		// with
-		// just
-		// a
-		// br
-		// tag
-		// but
-		// this
-		// is
-		// more
-		// correct
+		// Linebreaks could also  be  entered with just a br tag but this is more correct
 		return stringWithLinebreaks.replace("\f", "</w:t><w:br w:type=\"page\" /><w:t>");// the
-		// \f
-		// marker
-		// is
-		// expected
-		// to
-		// be
-		// at
-		// the
-		// end
-		// of
-		// the
-		// variable
-		// inputtext.
+		// \f marker is expected to  be at  the end of the variable inputtext.
 	}
 
 	@Override

@@ -16,6 +16,7 @@ package ch.dvbern.lib.doctemplate.common;
 
 import java.io.OutputStream;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -58,8 +59,7 @@ public class ConditionMergeElement extends AbstractMergeElement {
 	}
 
 	/**
-	 * @see ch.dvbern.lib.doctemplate.common.BasicMergeElement#getContent(ch.dvbern.lib.doctemplate.common.MergeContext,
-	 *      ch.dvbern.lib.doctemplate.common.MergeSource, java.io.OutputStream)
+	 * @see BasicMergeElement#getContent(MergeContext, MergeSource, OutputStream)
 	 */
 	@Override
 	public void getContent(MergeContext ctx, MergeSource mergeSource, OutputStream output) throws DocTemplateException {
@@ -75,4 +75,11 @@ public class ConditionMergeElement extends AbstractMergeElement {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("key", key)
+				.append("name", name)
+				.toString();
+	}
 }
