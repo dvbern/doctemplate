@@ -20,7 +20,7 @@
     <artifactId>doctemplate</artifactId>
     <packaging>pom</packaging>
     <name>DVBern DocTemplate</name>
-    <version>2.4.1-SNAPSHOT</version> <!-- app-release -->
+    <version>2.4.2-SNAPSHOT</version> <!-- app-release -->
     <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
         Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
     </description>
