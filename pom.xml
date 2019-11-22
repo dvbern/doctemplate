@@ -16,19 +16,23 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.dvbern.oss.doctemplate</groupId>
-    <artifactId>doctemplate</artifactId>
-    <packaging>pom</packaging>
-    <name>DVBern DocTemplate</name>
-    <version>2.4.2-SNAPSHOT</version> <!-- app-release -->
-    <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
-        Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
-    </description>
+
     <parent>
         <groupId>ch.dvbern.oss.maven</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.5</version>
     </parent>
+
+    <groupId>ch.dvbern.oss.doctemplate</groupId>
+    <artifactId>doctemplate</artifactId>
+    <packaging>pom</packaging>
+    <version>2.4.2-SNAPSHOT</version> <!-- app-release -->
+
+    <name>DVBern DocTemplate</name>
+    <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
+        Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
+    </description>
+	<url>http://github.com/dvbern/doctemplate</url>
 
     <properties>
         <maven-compiler.plugin.version>2.5.1</maven-compiler.plugin.version>
@@ -55,6 +59,7 @@
             </plugin>
         </plugins>
     </reporting>
+
     <developers>
         <developer>
             <id>meth</id>
@@ -63,6 +68,13 @@
             <organization>DV Bern AG</organization>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dvbern/doctemplate.git</connection>
+        <developerConnection>scm:git:ssh://github.com:dvbern/doctemplate.git</developerConnection>
+        <url>http://github.com/dvbern/doctemplate/tree/master</url>
+    </scm>
+
     <modules>
         <module>common</module>
         <module>odt-engine</module>
@@ -72,6 +84,7 @@
         <module>xml-engine</module>
 		<module>document-converter</module>
     </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -87,6 +100,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
