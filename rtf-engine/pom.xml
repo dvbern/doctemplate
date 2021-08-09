@@ -20,8 +20,9 @@
         <artifactId>doctemplate</artifactId>
         <version>2.4.2-SNAPSHOT</version> <!-- app-release -->
     </parent>
-    <groupId>ch.dvbern.oss.doctemplate</groupId>
+
     <artifactId>rtf-engine</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -70,7 +71,7 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.9</version>
+            <version>2.3.31</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>

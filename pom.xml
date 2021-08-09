@@ -39,6 +39,7 @@
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <maven-autotag-plugin.skipAutotagging>true</maven-autotag-plugin.skipAutotagging>
+        <slf4j.version>1.7.32</slf4j.version>
     </properties>
 
     <reporting>
@@ -95,12 +96,17 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.32</version>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.13.1</version>
+                <version>4.13.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

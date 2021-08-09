@@ -20,8 +20,9 @@
         <artifactId>doctemplate</artifactId>
         <version>2.4.2-SNAPSHOT</version> <!-- app-release -->
     </parent>
-    <groupId>ch.dvbern.oss.doctemplate</groupId>
+
     <artifactId>xml-engine</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
