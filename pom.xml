@@ -16,26 +16,30 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.dvbern.oss.doctemplate</groupId>
-    <artifactId>doctemplate</artifactId>
-    <packaging>pom</packaging>
-    <name>DVBern DocTemplate</name>
-    <version>2.4.1</version> <!-- app-release -->
-    <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
-        Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
-    </description>
+
     <parent>
         <groupId>ch.dvbern.oss.maven</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.3</version>
+        <version>3.0.5</version>
     </parent>
 
+    <groupId>ch.dvbern.oss.doctemplate</groupId>
+    <artifactId>doctemplate</artifactId>
+    <packaging>pom</packaging>
+    <version>3.0.0</version> <!-- app-release -->
+
+    <name>DVBern DocTemplate</name>
+    <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
+        Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
+    </description>
+	<url>https://github.com/dvbern/doctemplate</url>
+
     <properties>
-        <maven-compiler.plugin.version>2.5.1</maven-compiler.plugin.version>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <maven-autotag-plugin.skipAutotagging>true</maven-autotag-plugin.skipAutotagging>
+        <slf4j.version>1.7.32</slf4j.version>
     </properties>
 
     <reporting>
@@ -55,6 +59,7 @@
             </plugin>
         </plugins>
     </reporting>
+
     <developers>
         <developer>
             <id>meth</id>
@@ -62,7 +67,20 @@
             <name>Thomas Meister</name>
             <organization>DV Bern AG</organization>
         </developer>
+        <developer>
+            <name>DV Bern AG developers</name>
+            <email>hallo@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+            <organizationUrl>https://www.dvbern.ch</organizationUrl>
+        </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dvbern/doctemplate.git</connection>
+        <developerConnection>scm:git:ssh://github.com:dvbern/doctemplate.git</developerConnection>
+        <url>https://github.com/dvbern/doctemplate</url>
+    </scm>
+
     <modules>
         <module>common</module>
         <module>odt-engine</module>
@@ -72,36 +90,26 @@
         <module>xml-engine</module>
 		<module>document-converter</module>
     </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.21</version>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.13.1</version>
+                <version>4.13.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

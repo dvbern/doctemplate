@@ -47,8 +47,8 @@ import ch.dvbern.lib.doctemplate.util.ImageHandler;
 import ch.dvbern.lib.doctemplate.util.LdtConstants;
 
 /**
- * Merged eine XML-Vorlage mit Informationen aus einer {@link MergeSource}, die mit darin enthaltener <field>-Elemente
- * gezielt referenziert werden.
+ * Merged eine XML-Vorlage mit Informationen aus einer {@link MergeSource}, die mit darin enthaltener
+ * {@code <field>}-Elemente gezielt referenziert werden.
  */
 public class XmlMergeEngine extends AbstractMergeEngine<Image> {
 
