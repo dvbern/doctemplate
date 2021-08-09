@@ -20,7 +20,7 @@
     <parent>
         <groupId>ch.dvbern.oss.maven</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.5</version>
+        <version>3.0.5</version>
     </parent>
 
     <groupId>ch.dvbern.oss.doctemplate</groupId>
@@ -32,10 +32,9 @@
     <description>Merge von Applikationsdaten in ein vordefiniertes Dokumenttemplate.
         Aktuell werden die Dokumentformate RTF (Rich Text Format), ODT, DOCX, XML und PDF unterstützt.
     </description>
-	<url>http://github.com/dvbern/doctemplate</url>
+	<url>https://github.com/dvbern/doctemplate</url>
 
     <properties>
-        <maven-compiler.plugin.version>2.5.1</maven-compiler.plugin.version>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
@@ -67,12 +66,18 @@
             <name>Thomas Meister</name>
             <organization>DV Bern AG</organization>
         </developer>
+        <developer>
+            <name>DV Bern AG developers</name>
+            <email>hallo@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+            <organizationUrl>https://www.dvbern.ch</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
         <connection>scm:git:git://github.com/dvbern/doctemplate.git</connection>
         <developerConnection>scm:git:ssh://github.com:dvbern/doctemplate.git</developerConnection>
-        <url>http://github.com/dvbern/doctemplate/tree/master</url>
+        <url>https://github.com/dvbern/doctemplate</url>
     </scm>
 
     <modules>
@@ -90,7 +95,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.21</version>
+                <version>1.7.32</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -100,22 +105,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
