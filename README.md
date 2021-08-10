@@ -19,13 +19,6 @@ docx (new microsoft word format):
   <version>(Newest Version)</version>
 </dependency>
 
-rtf (microsoft rich text format):
-<dependency>
-  <groupId>ch.dvbern.oss.doctemplate</groupId>
-  <artifactId>rtf-engine</artifactId>
-  <version>(Newest Version)</version>
-</dependency>
-
 odt (open office):
 <dependency>
   <groupId>ch.dvbern.oss.doctemplate</groupId>
@@ -60,8 +53,6 @@ It might help to have a look at the specific Engine Tests. You find them here:
 ```
 •	docx:
 lib-doctemplate/docx-engine/src/test/java/ch/dvbern/lib/doctemplate/docx/DOCXMergeEngineTest.java
-•	rtf:
-lib-doctemplate/rtf-engine/src/test/java/ch/dvbern/lib/doctemplate/rtf/RTFMergeEngineTest.java
 •	odt:
 lib-doctemplate/odt-engine/src/test/java/ch/dvbern/lib/doctemplate/odt/ODTMergeEngineTest.java
 •	pdf:
@@ -69,6 +60,8 @@ lib-doctemplate/pdf-engine/src/test/java/ch/dvbern/lib/doctemplate/pdf/PDFMergeE
 •	xml:
 lib-doctemplate/xml-engine/src/test/java/ch/dvbern/lib/doctemplate/xml/XmlMergeEngineTest.java
 ```
+
+Note: RTF support has been removed with release 4.0.0. The dependencies are no longer maintained.
 
 ## Built With
 

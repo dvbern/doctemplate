@@ -18,7 +18,7 @@
     <parent>
         <groupId>ch.dvbern.oss.doctemplate</groupId>
         <artifactId>doctemplate</artifactId>
-        <version>3.0.0</version> <!-- app-release -->
+        <version>4.0.0</version> <!-- app-release -->
     </parent>
 
     <artifactId>document-converter</artifactId>
@@ -32,12 +32,10 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>com.artofsolving</groupId>
             <artifactId>jodconverter</artifactId>
-            <version>2.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
